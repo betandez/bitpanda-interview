@@ -1,13 +1,18 @@
 <template lang="pug">
   #app.todo-app
-    h1 {{ message }}
+    todo-list
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
+import TodoList from './components/TodoList.vue';
+
 export default defineComponent({
   name: 'App',
+  components: {
+    'todo-list': TodoList,
+  },
   setup() {
     // utilise todo-bitpanda-server to get data
 
