@@ -1,6 +1,6 @@
 <template lang="pug">
   #app.todo-app
-    div {{ message }}
+    h1 {{ message }}
 </template>
 
 <script lang="ts">
@@ -19,7 +19,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import './sass/globals.scss';
+
 .todo-app {
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-color;
 }
 </style>
