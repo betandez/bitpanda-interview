@@ -1,18 +1,19 @@
 <template lang="pug">
   #app.todo-app
-    todo-list(:list="todoList.items")
+    .list
+      todo(v-for="item in todoList.items", :item="item")
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
-import TodoList from './components/TodoList.vue';
+import Todo from './components/Todo.vue';
 import useTodoList from './composables/userTodoList';
 
 export default defineComponent({
   name: 'App',
   components: {
-    'todo-list': TodoList,
+    todo: Todo,
   },
   setup() {
     const { todoList, getTodoList } = useTodoList();
@@ -35,5 +36,14 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   background-color: $bg-color;
+}
+
+.list {
+  width: 80%;
+  min-height: 60vh;
+  background-color: $primary-color;
+  color: $secondary-color;
+  font-size: 1rem;
+  border-radius: $main-border-radius;
 }
 </style>
