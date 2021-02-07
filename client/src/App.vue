@@ -8,7 +8,7 @@
 import { defineComponent } from '@vue/composition-api';
 
 import Todo from './components/Todo.vue';
-import useTodoList from './composables/userTodoList';
+import useTodoList from './composables/useTodoList';
 
 export default defineComponent({
   name: 'App',
