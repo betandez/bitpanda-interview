@@ -17,6 +17,8 @@ module.exports = {
     'plugin:vue/essential',
 
     'airbnb-base',
+
+    'plugin:import/typescript',
   ],
   parserOptions: {
     extraFileExtensions: ['.vue'],
@@ -27,6 +29,13 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+      },
+    ],
     'linebreak-style': 0,
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
