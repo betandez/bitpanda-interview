@@ -1,12 +1,13 @@
 <template lang="pug">
   #app.todo-app
-    todo-list
+    todo-list(:list="todoList.items")
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
 import TodoList from './components/TodoList.vue';
+import useTodoList from './composables/userTodoList';
 
 export default defineComponent({
   name: 'App',
@@ -14,10 +15,11 @@ export default defineComponent({
     'todo-list': TodoList,
   },
   setup() {
-    // utilise todo-bitpanda-server to get data
+    const { todoList, getTodoList } = useTodoList();
 
     return {
-      message: 'Todo list should be here',
+      todoList,
+      getTodoList,
     };
   },
 });
