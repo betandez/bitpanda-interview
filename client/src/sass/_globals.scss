@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-$base-font-size: 16px;
-$main-border-radius: 12px;
-
-$bg-color: #121212;
-$primary-color: #f8f8ff;
-$secondary-color: #414042;
-$tertiary-color: #dbdbdb;
-$positive-color: #76a55f;
-
-@function get-color-opacity($color, $level) {
-  @return rgba($color, $level);
-}
+@import './variables.scss';
 
 * {
   margin: 0;

@@ -36,7 +36,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../sass/globals.scss';
+@import '../sass/variables.scss';
+@import '../sass/functions.scss';
+
 .todo {
   width: 100%;
   padding: 1.5rem 1rem;
