@@ -28,7 +28,7 @@ export interface TodoList {
 export async function getTodoList(
   description?: string,
   page?: number,
-  limit = 5,
+  limit = 10,
 ): Promise<TodoList | boolean> {
   try {
     let url = `${BASE_URL}?limit=${limit}`;

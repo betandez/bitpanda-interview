@@ -1,15 +1,17 @@
 <template lang="pug">
     .pagination
-        img(
+        img.pagination__img(
           src="images/arrow-left.svg",
           alt="arrow left",
-          :class="{'pagination__img--disable': !hasPrevPage}"
+          :class="{'pagination__img--disable': !hasPrevPage}",
+          @click="getPrevPage"
           )
         span.pagination__divider
-        img(
+        img.pagination__img(
           src="images/arrow-right.svg",
           alt="arrow right",
-          :class="{'pagination__img--disable': !hasNextPage}"
+          :class="{'pagination__img--disable': !hasNextPage}",
+          @click="getNextPage"
           )
 </template>
 
@@ -21,6 +23,20 @@ export default defineComponent({
   props: {
     hasPrevPage: Boolean,
     hasNextPage: Boolean,
+  },
+
+  setup(props, { emit }) {
+    const getNextPage = () => {
+      if (props.hasNextPage) emit('change-page', false);
+    };
+    const getPrevPage = () => {
+      if (props.hasPrevPage) emit('change-page', true);
+    };
+
+    return {
+      getNextPage,
+      getPrevPage,
+    };
   },
 });
 </script>
@@ -46,9 +62,13 @@ export default defineComponent({
     border-right: 2px solid get-color-opacity($secondary-color, 0.6);
   }
 
-  &__img--disable {
-    opacity: 0.5;
-    cursor: not-allowed;
+  &__img {
+    cursor: pointer;
+
+    &--disable {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 }
 </style>

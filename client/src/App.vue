@@ -3,7 +3,9 @@
     search-bar(@query-submit="fetchSearchQuery")
     .list
       h1.list__error(v-if="!todoList") ERROR - SERVICES NOT WORKING
-      h1.list__msg(v-if="todoList.items.length < 1") List is Empty. Try with an empty search!
+      h1.list__msg(
+        v-if="todoList.items && todoList.items.length < 1"
+        ) List is Empty. Try with an empty search!
       todo(
         v-if="todoList",
         v-for="item in todoList.items",
@@ -13,7 +15,12 @@
         :key="item._id"
       )
     .pagination-container
-      pagination
+      pagination(
+        v-if="todoList.meta",
+        :hasPrevPage="todoList.meta.hasPrevPage",
+        :hasNextPage="todoList.meta.hasNextPage",
+        @change-page="getNewPage"
+        )
 </template>
 
 <script lang="ts">
@@ -38,10 +45,19 @@ export default defineComponent({
       await fetchTodoList(query);
     };
 
+    const getNewPage = async (prev: boolean) => {
+      let { page } = todoList.value.meta;
+
+      if (prev) page -= 2;
+
+      await fetchTodoList(undefined, page);
+    };
+
     return {
       todoList,
       fetchTodoList,
       fetchSearchQuery,
+      getNewPage,
     };
   },
 });
