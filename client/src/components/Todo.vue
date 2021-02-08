@@ -3,13 +3,14 @@
     check-button(:todo="item._id", :isChecked="item.done")
     .todo__content
         span.todo__descr(:class="{'todo__descr--strike':item.done}") {{ item.description }}
-        small.todo__time {{ "- " + item.updatedAt }}
+        small.todo__time {{ "- " + lastUpdate }}
     delete-button(:todo="item._id", :isVisible="areOptionsVisible")
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api';
 
+import getDateDiffOnText from '../utils/getDateDiffOnText';
 import TodoCheckButton from './TodoCheckButton.vue';
 import TodoDeleteButton from './TodoDeleteButton.vue';
 
@@ -20,9 +21,12 @@ export default defineComponent({
     'delete-button': TodoDeleteButton,
   },
   props: {
-    item: Object,
+    item: {
+      type: Object,
+      required: true,
+    },
   },
-  setup() {
+  setup(props) {
     const areOptionsVisible = ref(false);
     const showOptions = () => {
       areOptionsVisible.value = true;
@@ -31,10 +35,15 @@ export default defineComponent({
       areOptionsVisible.value = false;
     };
 
+    console.log(props.item);
+
+    const lastUpdate = getDateDiffOnText(props.item.updatedAt);
+
     return {
       areOptionsVisible,
       showOptions,
       hideOptions,
+      lastUpdate,
     };
   },
 });
