@@ -77,7 +77,7 @@ export default defineComponent({
   color: inherit;
   cursor: context-menu;
 
-  &--last{
+  &--last {
     border-bottom: none;
   }
 

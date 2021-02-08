@@ -49,12 +49,11 @@ export default defineComponent({
     const { todo, createTodo } = useTodoCreator();
 
     const currentSearchQuery = ref('');
-    const updateList = async () => fetchTodoList(currentSearchQuery);
-
     const fetchSearchQuery = async (query: Ref<string>) => {
       await fetchTodoList(query);
       currentSearchQuery.value = query.value;
     };
+    const updateList = async () => fetchTodoList(currentSearchQuery);
 
     const submitTodoDescription = async (todoDescription: Ref) => {
       const newTodo = await createTodo(todoDescription);
@@ -74,10 +73,12 @@ export default defineComponent({
       todoList,
       fetchTodoList,
       fetchSearchQuery,
-      getNewPage,
       todo,
+      createTodo,
+      currentSearchQuery,
       submitTodoDescription,
       updateList,
+      getNewPage,
     };
   },
 });
