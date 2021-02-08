@@ -6,6 +6,7 @@
       h1.list__msg(
         v-if="todoList.items && todoList.items.length < 1"
         ) List is Empty. Try with an empty search!
+      add-todo
       todo(
         v-if="todoList",
         v-for="item in todoList.items",
@@ -26,6 +27,7 @@
 <script lang="ts">
 import { defineComponent, Ref } from '@vue/composition-api';
 
+import AddTodo from './components/AddTodo.vue';
 import Pagination from './components/Pagination.vue';
 import SearchBar from './components/SearchBar.vue';
 import Todo from './components/Todo.vue';
@@ -37,6 +39,7 @@ export default defineComponent({
     todo: Todo,
     'search-bar': SearchBar,
     pagination: Pagination,
+    'add-todo': AddTodo,
   },
   setup() {
     const { todoList, fetchTodoList } = useTodoList();
