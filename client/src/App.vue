@@ -41,18 +41,18 @@ export default defineComponent({
 @import './sass/globals.scss';
 
 .todo-app {
-  width: 100%;
+  width: 80%;
   min-height: 100vh;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
   padding: 1rem 0;
-  background-color: $bg-color;
 }
 
 .list {
-  width: 80%;
+  width: 100%;
   min-height: 60vh;
   display: flex;
   justify-content: center;
