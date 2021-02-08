@@ -1,5 +1,6 @@
 <template lang="pug">
   #app.todo-app
+    search-bar
     .list
       h1.list__error(v-if="!todoList") ERROR - SERVICES NOT WORKING
       todo(
@@ -15,6 +16,7 @@
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
 
+import SearchBar from './components/SearchBar.vue';
 import Todo from './components/Todo.vue';
 import useTodoList from './composables/useTodoList';
 
@@ -22,6 +24,7 @@ export default defineComponent({
   name: 'App',
   components: {
     todo: Todo,
+    'search-bar': SearchBar,
   },
   setup() {
     const { todoList, fetchTodoList } = useTodoList();
@@ -43,6 +46,8 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
+  padding: 1rem 0;
   background-color: $bg-color;
 }
 
