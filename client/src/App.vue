@@ -12,8 +12,8 @@
         v-for="(item, i) in todoList.items",
         :item="item",
         :isLast="i === todoList.items.length - 1"
-        :updateHandler="fetchTodoList",
-        :deleteHandler="fetchTodoList",
+        :updateHandler="updateList",
+        :deleteHandler="updateList",
         :key="item._id"
       )
     .pagination-container
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref } from '@vue/composition-api';
+import { defineComponent, ref, Ref } from '@vue/composition-api';
 
 import AddTodo from './components/AddTodo.vue';
 import Pagination from './components/Pagination.vue';
@@ -48,14 +48,18 @@ export default defineComponent({
 
     const { todo, createTodo } = useTodoCreator();
 
-    const fetchSearchQuery = async (query: Ref) => {
+    const currentSearchQuery = ref('');
+    const updateList = async () => fetchTodoList(currentSearchQuery);
+
+    const fetchSearchQuery = async (query: Ref<string>) => {
       await fetchTodoList(query);
+      currentSearchQuery.value = query.value;
     };
 
     const submitTodoDescription = async (todoDescription: Ref) => {
       const newTodo = await createTodo(todoDescription);
 
-      if (newTodo) await fetchTodoList();
+      if (newTodo) await updateList();
     };
 
     const getNewPage = async (prev: boolean) => {
@@ -63,7 +67,7 @@ export default defineComponent({
 
       if (prev) page -= 2;
 
-      await fetchTodoList(undefined, page);
+      await fetchTodoList(currentSearchQuery, page);
     };
 
     return {
@@ -73,6 +77,7 @@ export default defineComponent({
       getNewPage,
       todo,
       submitTodoDescription,
+      updateList,
     };
   },
 });
@@ -108,7 +113,7 @@ export default defineComponent({
     font-size: 1.5rem;
     font-style: italic;
     color: $negative-color;
-    margin-top: 5rem
+    margin-top: 5rem;
   }
 
   &__msg {
