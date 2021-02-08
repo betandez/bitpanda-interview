@@ -27,7 +27,7 @@ export default defineComponent({
     watch(todoUpdated, () => {
       if (!todoUpdated) return console.error(`ERROR - FAILED UPDATE ON TODO ${props.todo}`);
 
-      return emit('task-change', todoUpdated);
+      return emit('task-change');
     });
 
     return {

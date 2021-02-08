@@ -1,7 +1,12 @@
 <template lang="pug">
     .search-bar
       img(src="images/search.svg", alt="search")
-      input.search-bar__input(type="text",placeholder="Search", v-model="searchQuery")
+      input.search-bar__input(
+        @keyup.enter="submitQuery",
+        type="text",
+        placeholder="Search",
+        v-model="searchQuery"
+      )
 </template>
 
 <script lang="ts">
@@ -10,11 +15,16 @@ import { defineComponent, ref } from '@vue/composition-api';
 export default defineComponent({
   name: 'SearchBar',
   props: {},
-  setup() {
+  setup(_, { emit }) {
     const searchQuery = ref('');
+
+    const submitQuery = () => {
+      emit('query-submit', searchQuery);
+    };
 
     return {
       searchQuery,
+      submitQuery,
     };
   },
 });

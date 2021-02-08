@@ -25,9 +25,13 @@ export interface TodoList {
   meta: Meta;
 }
 
-export async function getTodoList(): Promise<TodoList | boolean> {
+export async function getTodoList(description?: string): Promise<TodoList | boolean> {
   try {
-    const response: Response = await fetch(BASE_URL);
+    let url = BASE_URL;
+
+    if (description) url += `?description=${description}`;
+
+    const response: Response = await fetch(url);
 
     if (response.status !== 200) return false;
 

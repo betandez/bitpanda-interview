@@ -6,7 +6,7 @@
 <script lang="ts">
 import { defineComponent, watch } from '@vue/composition-api';
 
-import useTodoRemover from '../composables/userTodoRemover';
+import useTodoRemover from '../composables/useTodoRemover';
 
 export default defineComponent({
   name: 'TodoDeleteButton',
