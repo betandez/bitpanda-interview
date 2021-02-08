@@ -56,3 +56,17 @@ export async function putTodo(id: string, isChecked: boolean): Promise<Todo | bo
     return false;
   }
 }
+
+export async function deleteTodo(id: string): Promise<boolean> {
+  try {
+    const url = `${BASE_URL}/${id}`;
+    const response: Response = await fetch(url, { method: 'DELETE' });
+
+    if (response.status !== 204) return false;
+
+    return true;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+}

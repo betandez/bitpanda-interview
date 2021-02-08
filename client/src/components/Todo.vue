@@ -4,7 +4,7 @@
     .todo__content
         span.todo__descr(:class="{'todo__descr--strike':item.done}") {{ item.description }}
         small.todo__time {{ "- " + lastUpdate }}
-    delete-button(:todo="item._id", :isVisible="areOptionsVisible")
+    delete-button(@task-delete="deleteHandler", :todo="item._id", :isVisible="areOptionsVisible")
 </template>
 
 <script lang="ts">
@@ -26,6 +26,10 @@ export default defineComponent({
       required: true,
     },
     updateHandler: {
+      type: Function,
+      required: true,
+    },
+    deleteHandler: {
       type: Function,
       required: true,
     },

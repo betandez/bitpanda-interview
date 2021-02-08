@@ -5,7 +5,9 @@
       todo(
         v-if="todoList",
         v-for="item in todoList.items",
-        :item="item", :updateHandler="fetchTodoList",
+        :item="item",
+        :updateHandler="fetchTodoList",
+        :deleteHandler="fetchTodoList",
         :key="item._id"
       )
 </template>
