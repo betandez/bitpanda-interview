@@ -35,8 +35,6 @@ export default defineComponent({
       areOptionsVisible.value = false;
     };
 
-    console.log(props.item);
-
     const lastUpdate = getDateDiffOnText(props.item.updatedAt);
 
     return {

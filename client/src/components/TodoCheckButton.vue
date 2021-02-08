@@ -9,8 +9,14 @@ import { defineComponent } from '@vue/composition-api';
 export default defineComponent({
   name: 'TodoCheckButton',
   props: {
-    todo: String,
-    isChecked: Boolean,
+    todo: {
+      type: String,
+      required: true,
+    },
+    isChecked: {
+      type: Boolean,
+      required: true,
+    },
   },
 });
 </script>

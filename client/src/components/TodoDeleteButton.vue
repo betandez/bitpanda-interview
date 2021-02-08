@@ -9,8 +9,14 @@ import { defineComponent } from '@vue/composition-api';
 export default defineComponent({
   name: 'TodoDeleteButton',
   props: {
-    todo: String,
-    isVisible: Boolean,
+    todo: {
+      type: String,
+      required: true,
+    },
+    isVisible: {
+      type: Boolean,
+      required: true,
+    },
   },
 });
 </script>

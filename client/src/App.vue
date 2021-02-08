@@ -1,7 +1,8 @@
 <template lang="pug">
   #app.todo-app
     .list
-      todo(v-for="item in todoList.items", :item="item")
+      h1.list__error(v-if="!todoList") ERROR - SERVICES NOT WORKING
+      todo(v-if="todoList",v-for="item in todoList.items", :item="item")
 </template>
 
 <script lang="ts">
@@ -45,5 +46,15 @@ export default defineComponent({
   color: $secondary-color;
   font-size: 1rem;
   border-radius: $main-border-radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  &__error {
+    color: $negative-color;
+    font-size: 1.5rem;
+    font-style: italic;
+  }
 }
 </style>
