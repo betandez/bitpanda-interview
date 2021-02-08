@@ -17,7 +17,6 @@ export default defineComponent({
   props: {},
   setup(_, { emit }) {
     const searchQuery = ref('');
-
     const submitQuery = () => {
       emit('query-submit', searchQuery);
     };

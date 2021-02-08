@@ -3,6 +3,7 @@
     search-bar(@query-submit="fetchSearchQuery")
     .list
       h1.list__error(v-if="!todoList") ERROR - SERVICES NOT WORKING
+      h1.list__msg(v-if="todoList.items.length < 1") List is Empty. Try with an empty search!
       todo(
         v-if="todoList",
         v-for="item in todoList.items",
