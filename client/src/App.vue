@@ -17,11 +17,11 @@ export default defineComponent({
     todo: Todo,
   },
   setup() {
-    const { todoList, getTodoList } = useTodoList();
+    const { todoList, fetchTodoList } = useTodoList();
 
     return {
       todoList,
-      getTodoList,
+      fetchTodoList,
     };
   },
 });

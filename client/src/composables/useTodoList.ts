@@ -1,21 +1,21 @@
 import { ref, onMounted, Ref } from '@vue/composition-api';
 
-import { fetchTodoList } from '../services/Todo';
+import { getTodoList, TodoList } from '../services/Todo';
 
 interface useTodoListObject {
   todoList: Ref;
-  getTodoList: () => Promise<void>;
+  fetchTodoList: () => Promise<void>;
 }
 
 export default function useTodoList(): useTodoListObject {
   const todoList = ref({});
-  const getTodoList = async (): Promise<void> => {
-    todoList.value = await fetchTodoList();
+  const fetchTodoList = async (): Promise<void> => {
+    todoList.value = (await getTodoList()) as TodoList;
   };
 
-  onMounted(getTodoList);
+  onMounted(fetchTodoList);
   return {
     todoList,
-    getTodoList,
+    fetchTodoList,
   };
 }
