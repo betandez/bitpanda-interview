@@ -3,9 +3,9 @@
       img(src="images/search.svg", alt="search")
       input.search-bar__input(
         @keyup.enter="submitQuery",
+        v-model="searchQuery"
         type="text",
         placeholder="Search",
-        v-model="searchQuery"
       )
 </template>
 
@@ -39,8 +39,8 @@ export default defineComponent({
   margin-bottom: 1rem;
   display: flex;
   justify-content: left;
-  align-items: center;
   border-radius: $main-border-radius;
+  align-items: center;
   background-color: $tertiary-color;
 
   &__input {

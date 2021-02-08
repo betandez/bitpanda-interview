@@ -1,6 +1,6 @@
 <template lang="pug">
     .check(@click="updateTodo")
-      img.check__img(src="images/check.svg", alt="check", v-show="isChecked")
+      img.check__img(v-show="isChecked", src="images/check.svg", alt="check")
 </template>
 
 <script lang="ts">

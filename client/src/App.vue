@@ -18,10 +18,10 @@
       )
     .pagination-container
       pagination(
+        @change-page="getNewPage"
         v-if="todoList.meta",
         :hasPrevPage="todoList.meta.hasPrevPage",
         :hasNextPage="todoList.meta.hasNextPage",
-        @change-page="getNewPage"
         )
 </template>
 
@@ -119,9 +119,9 @@ export default defineComponent({
 }
 
 .pagination-container {
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
 }
 </style>

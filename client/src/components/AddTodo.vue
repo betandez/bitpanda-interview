@@ -1,10 +1,10 @@
 <template lang="pug">
     .add-todo
         input.add-todo__input(
+            @keyup.enter="submitTodo",
+            v-model="todoDescription",
             type="text",
             placeholder="Take a note",
-            v-model="todoDescription",
-            @keyup.enter="submitTodo",
             )
         img(src="images/criss-cross.svg", alt="criss-cross", @click="submitTodo")
 </template>

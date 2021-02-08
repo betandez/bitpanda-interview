@@ -1,6 +1,6 @@
 <template lang="pug">
     .delete(@click="removeTodo")
-        img(src="images/criss-cross.svg", alt="criss-cross", v-show="isVisible")
+        img(v-show="isVisible", src="images/criss-cross.svg", alt="criss-cross")
 </template>
 
 <script lang="ts">

@@ -1,17 +1,17 @@
 <template lang="pug">
     .pagination
         img.pagination__img(
-          src="images/arrow-left.svg",
-          alt="arrow left",
           :class="{'pagination__img--disable': !hasPrevPage}",
           @click="getPrevPage"
+          src="images/arrow-left.svg",
+          alt="arrow left",
           )
         span.pagination__divider
         img.pagination__img(
-          src="images/arrow-right.svg",
-          alt="arrow right",
           :class="{'pagination__img--disable': !hasNextPage}",
           @click="getNextPage"
+          src="images/arrow-right.svg",
+          alt="arrow right",
           )
 </template>
 
@@ -52,10 +52,10 @@ export default defineComponent({
   justify-content: space-around;
   align-items: center;
   border-radius: $main-border-radius;
+  border-bottom: 2px solid $tertiary-color;
   font-size: 1.5rem;
   color: $secondary-color;
   background-color: $primary-color;
-  border-bottom: 2px solid $tertiary-color;
 
   &__divider {
     width: 0;
