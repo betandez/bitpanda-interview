@@ -44,7 +44,8 @@ export default defineComponent({
   align-items: center;
   border-top-left-radius: $main-border-radius;
   border-top-right-radius: $main-border-radius;
-  background-color: get-color-opacity($tertiary-color, 0.3);
+  border-bottom: 2px solid $tertiary-color;
+  background-color: get-color-opacity($tertiary-color, 0.2);
 
   &__input {
     height: 2rem;

@@ -9,8 +9,9 @@
         ) List is Empty. Try with an empty search!
       todo(
         v-if="todoList",
-        v-for="item in todoList.items",
+        v-for="(item, i) in todoList.items",
         :item="item",
+        :isLast="i === todoList.items.length - 1"
         :updateHandler="fetchTodoList",
         :deleteHandler="fetchTodoList",
         :key="item._id"
@@ -95,10 +96,10 @@ export default defineComponent({
   width: 100%;
   min-height: 60vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-flow: column;
   border-radius: $main-border-radius;
+  border: 2px solid $tertiary-color;
   font-size: 1rem;
   color: $secondary-color;
   background-color: $primary-color;
@@ -107,6 +108,13 @@ export default defineComponent({
     font-size: 1.5rem;
     font-style: italic;
     color: $negative-color;
+    margin-top: 5rem
+  }
+
+  &__msg {
+    margin-top: 5rem;
+    font-style: italic;
+    color: $positive-color;
   }
 }
 

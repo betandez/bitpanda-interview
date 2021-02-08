@@ -55,6 +55,7 @@ export default defineComponent({
   font-size: 1.5rem;
   color: $secondary-color;
   background-color: $primary-color;
+  border-bottom: 2px solid $tertiary-color;
 
   &__divider {
     width: 0;

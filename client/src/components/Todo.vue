@@ -1,5 +1,5 @@
 <template lang="pug">
-  .todo(@mouseover="showOptions", @mouseleave="hideOptions" :key="item._id")
+  .todo(@mouseover="showOptions", @mouseleave="hideOptions", :class="{'todo--last': isLast}")
     check-button(@task-change="updateHandler", :todo="item._id", :isChecked="item.done")
     .todo__content
         span.todo__descr(:class="{'todo__descr--strike':item.done}") {{ item.description }}
@@ -38,6 +38,7 @@ export default defineComponent({
       type: Function,
       required: true,
     },
+    isLast: Boolean,
   },
   setup(props) {
     const areOptionsVisible = ref(false);
@@ -71,9 +72,14 @@ export default defineComponent({
   display: flex;
   justify-content: left;
   align-items: center;
+  border-bottom: 2px solid $tertiary-color;
   font-size: 1rem;
   color: inherit;
   cursor: context-menu;
+
+  &--last{
+    border-bottom: none;
+  }
 
   &__content {
     margin: 0 0.5rem;
