@@ -8,7 +8,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api';
+import {
+  computed,
+  defineComponent,
+  ref,
+  toRefs,
+} from '@vue/composition-api';
 
 import getDateDiffOnText from '../utils/getDateDiffOnText';
 import TodoCheckButton from './TodoCheckButton.vue';
@@ -43,7 +48,8 @@ export default defineComponent({
       areOptionsVisible.value = false;
     };
 
-    const lastUpdate = getDateDiffOnText(props.item.updatedAt);
+    const { item } = toRefs(props);
+    const lastUpdate = computed(() => getDateDiffOnText(item.value.updatedAt));
 
     return {
       areOptionsVisible,

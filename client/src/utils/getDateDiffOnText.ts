@@ -22,10 +22,10 @@ export default function getDateDiffOnText(updateString: string): string {
   const diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000);
 
   if (diffMins >= 1) {
-    return `${diffHrs} hours`;
+    return `${diffMins} minutes`;
   }
 
-  const diffSec = Math.round((((diffMs % 86400000) % 3600000) % 60000) % 60000);
+  const diffSec = Math.round(diffMs / 1000);
 
-  return `${diffSec} hours`;
+  return `${diffSec} seconds`;
 }
