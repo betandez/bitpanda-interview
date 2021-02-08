@@ -25,11 +25,17 @@ export interface TodoList {
   meta: Meta;
 }
 
-export async function getTodoList(description?: string): Promise<TodoList | boolean> {
+export async function getTodoList(
+  description?: string,
+  page?: number,
+  limit = 5,
+): Promise<TodoList | boolean> {
   try {
-    let url = BASE_URL;
+    let url = `${BASE_URL}?limit=${limit}`;
 
-    if (description) url += `?description=${description}`;
+    if (description) url += `&description=${description}`;
+
+    if (page) url += `&offset=${page * limit}`;
 
     const response: Response = await fetch(url);
 

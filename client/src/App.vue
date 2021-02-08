@@ -12,11 +12,14 @@
         :deleteHandler="fetchTodoList",
         :key="item._id"
       )
+    .pagination-container
+      pagination
 </template>
 
 <script lang="ts">
 import { defineComponent, Ref } from '@vue/composition-api';
 
+import Pagination from './components/Pagination.vue';
 import SearchBar from './components/SearchBar.vue';
 import Todo from './components/Todo.vue';
 import useTodoList from './composables/useTodoList';
@@ -26,6 +29,7 @@ export default defineComponent({
   components: {
     todo: Todo,
     'search-bar': SearchBar,
+    pagination: Pagination,
   },
   setup() {
     const { todoList, fetchTodoList } = useTodoList();
@@ -74,5 +78,12 @@ export default defineComponent({
     font-style: italic;
     color: $negative-color;
   }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 </style>
