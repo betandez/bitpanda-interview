@@ -1,15 +1,34 @@
 <template lang="pug">
     .add-todo
-        input.add-todo__input(type="text", placeholder="Take a note")
-        img(src="images/criss-cross.svg", alt="criss-cross")
+        input.add-todo__input(
+            type="text",
+            placeholder="Take a note",
+            v-model="todoDescription",
+            @keyup.enter="submitTodo",
+            )
+        img(src="images/criss-cross.svg", alt="criss-cross", @click="submitTodo")
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent, ref } from '@vue/composition-api';
 
 export default defineComponent({
   name: 'AddTodo',
   props: {},
+  setup(_, { emit }) {
+    const todoDescription = ref('');
+    const submitTodo = () => {
+      if (!todoDescription.value) return;
+
+      emit('add-todo', todoDescription);
+      todoDescription.value = '';
+    };
+
+    return {
+      todoDescription,
+      submitTodo,
+    };
+  },
 });
 </script>
 
