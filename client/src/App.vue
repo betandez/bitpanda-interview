@@ -2,11 +2,11 @@
   #app.todo-app
     search-bar(@query-submit="fetchSearchQuery")
     .list
+      add-todo(@add-todo="submitTodoDescription")
       h1.list__error(v-if="!todoList") ERROR - SERVICES NOT WORKING
       h1.list__msg(
         v-if="todoList.items && todoList.items.length < 1"
         ) List is Empty. Try with an empty search!
-      add-todo
       todo(
         v-if="todoList",
         v-for="item in todoList.items",
@@ -31,6 +31,7 @@ import AddTodo from './components/AddTodo.vue';
 import Pagination from './components/Pagination.vue';
 import SearchBar from './components/SearchBar.vue';
 import Todo from './components/Todo.vue';
+import useTodoCreator from './composables/useTodoCreator';
 import useTodoList from './composables/useTodoList';
 
 export default defineComponent({
@@ -44,8 +45,16 @@ export default defineComponent({
   setup() {
     const { todoList, fetchTodoList } = useTodoList();
 
+    const { todo, createTodo } = useTodoCreator();
+
     const fetchSearchQuery = async (query: Ref) => {
       await fetchTodoList(query);
+    };
+
+    const submitTodoDescription = async (todoDescription: Ref) => {
+      const newTodo = await createTodo(todoDescription);
+
+      if (newTodo) await fetchTodoList();
     };
 
     const getNewPage = async (prev: boolean) => {
@@ -61,6 +70,8 @@ export default defineComponent({
       fetchTodoList,
       fetchSearchQuery,
       getNewPage,
+      todo,
+      submitTodoDescription,
     };
   },
 });

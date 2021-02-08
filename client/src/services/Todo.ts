@@ -41,7 +41,7 @@ export async function getTodoList(
 
     if (response.status !== 200) return false;
 
-    const todoList: TodoList = (await response.json()) as TodoList;
+    const todoList = (await response.json()) as TodoList;
 
     return todoList;
   } catch (e) {
@@ -81,6 +81,28 @@ export async function deleteTodo(id: string): Promise<boolean> {
     if (response.status !== 204) return false;
 
     return true;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+}
+
+export async function postTodo(description: string): Promise<Todo | boolean> {
+  try {
+    const response: Response = await fetch(BASE_URL, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ description }),
+    });
+
+    if (response.status !== 200) return false;
+
+    const newTodo = (await response.json()) as Todo;
+
+    return newTodo;
   } catch (e) {
     console.error(e);
     return false;
