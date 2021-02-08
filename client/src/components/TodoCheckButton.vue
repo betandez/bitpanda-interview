@@ -25,7 +25,9 @@ export default defineComponent({
     const { todoUpdated, updateTodo } = useTodoUpdater(props.todo, isChecked);
 
     watch(todoUpdated, () => {
-      emit('task-change', todoUpdated);
+      if (!todoUpdated) return console.error(`ERROR - FAILED UPDATE ON TODO ${props.todo}`);
+
+      return emit('task-change', todoUpdated);
     });
 
     return {
@@ -41,13 +43,13 @@ export default defineComponent({
 @import '../sass/functions.scss';
 
 .check {
-  border-radius: 100%;
   height: 2rem;
   min-width: 2rem;
-  border: 1px solid get-color-opacity($secondary-color, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 100%;
+  border: 1px solid get-color-opacity($secondary-color, 0.5);
   cursor: pointer;
 }
 </style>

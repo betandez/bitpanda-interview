@@ -68,24 +68,24 @@ export default defineComponent({
 .todo {
   width: 100%;
   padding: 1.5rem 1rem;
-  font-size: 1rem;
-  color: inherit;
   display: flex;
   justify-content: left;
   align-items: center;
+  font-size: 1rem;
+  color: inherit;
   cursor: context-menu;
 
   &__content {
+    margin: 0 0.5rem;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin: 0 0.5rem;
     flex-wrap: wrap;
   }
 
   &__descr {
-    color: $secondary-color;
     font-size: 1rem;
+    color: $secondary-color;
 
     &--strike {
       color: get-color-opacity($secondary-color, 0.5);
@@ -94,10 +94,10 @@ export default defineComponent({
   }
 
   &__time {
-    font-size: 0.6rem;
-    color: get-color-opacity($secondary-color, 0.5);
     margin-left: 0.5rem;
+    font-size: 0.6rem;
     white-space: nowrap;
+    color: get-color-opacity($secondary-color, 0.5);
   }
 }
 </style>

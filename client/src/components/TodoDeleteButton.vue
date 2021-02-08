@@ -24,7 +24,9 @@ export default defineComponent({
     const { isSuccess, removeTodo } = useTodoRemover(props.todo);
 
     watch(isSuccess, () => {
-      if (isSuccess) emit('task-delete');
+      if (!isSuccess) return console.error(`ERROR - FAILED DELETE ON TODO ${props.todo}`);
+
+      return emit('task-delete');
     });
 
     return {

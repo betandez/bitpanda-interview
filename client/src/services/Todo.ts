@@ -1,3 +1,5 @@
+const BASE_URL = 'http://localhost:3000/api/v1/todo';
+
 export interface Todo {
   createdAt: string;
   description: string;
@@ -23,11 +25,12 @@ export interface TodoList {
   meta: Meta;
 }
 
-const BASE_URL = 'http://localhost:3000/api/v1/todo';
-
 export async function getTodoList(): Promise<TodoList | boolean> {
   try {
     const response: Response = await fetch(BASE_URL);
+
+    if (response.status !== 200) return false;
+
     const todoList: TodoList = (await response.json()) as TodoList;
 
     return todoList;
@@ -48,6 +51,9 @@ export async function putTodo(id: string, isChecked: boolean): Promise<Todo | bo
       },
       body: JSON.stringify({ done: isChecked }),
     });
+
+    if (response.status !== 200) return false;
+
     const todo = (await response.json()) as Todo;
 
     return todo;

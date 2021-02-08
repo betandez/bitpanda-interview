@@ -49,19 +49,19 @@ export default defineComponent({
 .list {
   width: 80%;
   min-height: 60vh;
-  background-color: $primary-color;
-  color: $secondary-color;
-  font-size: 1rem;
-  border-radius: $main-border-radius;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  border-radius: $main-border-radius;
+  font-size: 1rem;
+  color: $secondary-color;
+  background-color: $primary-color;
 
   &__error {
-    color: $negative-color;
     font-size: 1.5rem;
     font-style: italic;
+    color: $negative-color;
   }
 }
 </style>
