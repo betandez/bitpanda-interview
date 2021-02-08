@@ -1,10 +1,12 @@
 <template lang="pug">
-    .check
+    .check(@click="updateTodo")
       img.check__img(src="images/check.svg", alt="check", v-show="isChecked")
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent, watch, toRefs } from '@vue/composition-api';
+
+import useTodoUpdater from '../composables/useTodoUpdater';
 
 export default defineComponent({
   name: 'TodoCheckButton',
@@ -17,6 +19,19 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+  },
+  setup(props, { emit }) {
+    const { isChecked } = toRefs(props);
+    const { todoUpdated, updateTodo } = useTodoUpdater(props.todo, isChecked);
+
+    watch(todoUpdated, () => {
+      emit('task-change', todoUpdated);
+    });
+
+    return {
+      todoUpdated,
+      updateTodo,
+    };
   },
 });
 </script>
@@ -33,5 +48,6 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 </style>

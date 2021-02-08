@@ -26,5 +26,6 @@ export default defineComponent({
   min-width: 1.5rem;
   margin-left: auto;
   transform: rotate(45deg);
+  cursor: pointer;
 }
 </style>

@@ -2,7 +2,12 @@
   #app.todo-app
     .list
       h1.list__error(v-if="!todoList") ERROR - SERVICES NOT WORKING
-      todo(v-if="todoList",v-for="item in todoList.items", :item="item")
+      todo(
+        v-if="todoList",
+        v-for="item in todoList.items",
+        :item="item", :updateHandler="fetchTodoList",
+        :key="item._id"
+      )
 </template>
 
 <script lang="ts">

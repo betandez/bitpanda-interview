@@ -7,10 +7,10 @@ interface useTodoUpdatedObject {
   updateTodo: () => Promise<void>;
 }
 
-export default function useTodoUpdater(todo: string, checked: boolean): useTodoUpdatedObject {
+export default function useTodoUpdater(todo: string, isChecked: Ref): useTodoUpdatedObject {
   const todoUpdated = ref({});
   const updateTodo = async (): Promise<void> => {
-    todoUpdated.value = (await putTodo(todo, checked)) as Todo;
+    todoUpdated.value = (await putTodo(todo, !isChecked.value)) as Todo;
   };
 
   return {

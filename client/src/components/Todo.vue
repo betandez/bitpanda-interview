@@ -1,6 +1,6 @@
 <template lang="pug">
   .todo(@mouseover="showOptions", @mouseleave="hideOptions" :key="item._id")
-    check-button(:todo="item._id", :isChecked="item.done")
+    check-button(@task-change="updateHandler", :todo="item._id", :isChecked="item.done")
     .todo__content
         span.todo__descr(:class="{'todo__descr--strike':item.done}") {{ item.description }}
         small.todo__time {{ "- " + lastUpdate }}
@@ -23,6 +23,10 @@ export default defineComponent({
   props: {
     item: {
       type: Object,
+      required: true,
+    },
+    updateHandler: {
+      type: Function,
       required: true,
     },
   },
@@ -59,7 +63,7 @@ export default defineComponent({
   display: flex;
   justify-content: left;
   align-items: center;
-  cursor: pointer;
+  cursor: context-menu;
 
   &__content {
     display: flex;

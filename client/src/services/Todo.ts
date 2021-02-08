@@ -42,7 +42,11 @@ export async function putTodo(id: string, isChecked: boolean): Promise<Todo | bo
     const url = `${BASE_URL}/${id}`;
     const response: Response = await fetch(url, {
       method: 'PUT',
-      body: JSON.stringify(isChecked),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ done: isChecked }),
     });
     const todo = (await response.json()) as Todo;
 
